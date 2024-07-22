@@ -1,27 +1,44 @@
 package com.bgrfacile.poly_copie
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.annotation.RequiresApi
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.material3.TopAppBar
 import com.bgrfacile.poly_copie.ui.theme.PolycopieTheme
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             PolycopieTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) {  paddingValues ->
-                    Text(text = "Hello World", modifier = Modifier.padding(paddingValues))
-                }
+                Scaffold(
+                    topBar = {
+                        TopAppBar(
+                            title = { Text(text = "Polycopie") },
+                            actions = {
+                                IconButton(onClick = { /* Gérer le clic ici */ }) {
+                                    Icon(Icons.Filled.Search, contentDescription = "Rechercher")
+                                }
+                            }
+                        )
+                    },
+                    content = { paddingValues ->
+                        TodoListPage(paddingValues)
+                    }
+                )
             }
         }
     }
