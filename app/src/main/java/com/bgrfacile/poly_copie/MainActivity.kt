@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     topBar = {
                         TopAppBar(
-                            title = { Text(text = "Polycopie") },
+                            title = { Text(text = "poly-copie") },
                             actions = {
                                 IconButton(onClick = { /* Gérer le clic ici */ }) {
                                     Icon(Icons.Filled.Search, contentDescription = "Rechercher")

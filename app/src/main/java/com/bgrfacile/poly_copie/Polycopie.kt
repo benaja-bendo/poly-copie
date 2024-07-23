@@ -9,7 +9,7 @@ data class Polycopie(
     val id: Int,
     val name: String,
     val description: String,
-    val created_at: Date,
+    val createdAt: Date,
 )
 
 
