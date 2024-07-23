@@ -15,7 +15,7 @@ data class Polycopie(
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun getFakePolycopie(): List<Polycopie> {
-    return listOf<Polycopie>(
+    return listOf(
         Polycopie(1, "Polycopie 1", "Polycopie 1", Date.from(Instant.now())),
         Polycopie(2, "Polycopie 2", "Polycopie 2", Date.from(Instant.now())),
         Polycopie(3, "Polycopie 3", "Polycopie 3", Date.from(Instant.now())),
@@ -27,4 +27,8 @@ fun getFakePolycopie(): List<Polycopie> {
         Polycopie(9, "Polycopie 9", "Polycopie 9", Date.from(Instant.now())),
         Polycopie(10, "Polycopie 10", "Polycopie 10", Date.from(Instant.now())),
     )
+}
+
+fun getFakePolycopieById(id: Int): Polycopie? {
+    return getFakePolycopie().find { it.id == id }
 }

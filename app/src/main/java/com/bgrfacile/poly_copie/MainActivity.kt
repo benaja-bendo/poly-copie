@@ -6,37 +6,32 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.bgrfacile.poly_copie.ui.theme.PolycopieTheme
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             PolycopieTheme {
+                val navController = rememberNavController()
+
                 Scaffold(
-                    topBar = {
-                        TopAppBar(
-                            title = { Text(text = "poly-copie") },
-                            actions = {
-                                IconButton(onClick = { /* Gérer le clic ici */ }) {
-                                    Icon(Icons.Filled.Search, contentDescription = "Rechercher")
-                                }
-                            }
-                        )
-                    },
+                    topBar = {topBar()},
                     content = { paddingValues ->
-                        TodoListPage(paddingValues)
+                        NavHost(navController = navController, startDestination = "main") {
+                            composable("main") { TodoListPage(navController, paddingValues) }
+                            composable("details/{itemId}") { backStackEntry ->
+                                val itemId = backStackEntry.arguments?.getString("itemId")
+                                DetailsPolycopie(itemId ?: "",paddingValues)
+                            }
+                        }
                     }
                 )
             }
