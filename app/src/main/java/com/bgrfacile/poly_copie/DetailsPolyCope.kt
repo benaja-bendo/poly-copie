@@ -7,13 +7,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTransformGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,23 +31,29 @@ import kotlin.math.roundToInt
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun DetailsPolycopie(itemId: String, paddingValues: PaddingValues) {
+fun DetailsPolyCope(
+    itemId: String
+) {
     val item = itemId.toIntOrNull()?.let { getFakePolycopieById(it) }
-    val pagerState = rememberPagerState(pageCount = {item?.imageResources?.size ?: 0})
+    val pagerState = rememberPagerState(pageCount = { item?.imageResources?.size ?: 0 })
 
-    Column(
-        modifier = Modifier
-            .fillMaxHeight()
-            .padding(paddingValues)
-    ) {
-        item?.let {
-            HorizontalPager(state = pagerState) { page ->
-                val imageResource = item.imageResources[page]
-//                ImageCard(imageResource)
-                ZoomableImageCard(imageResource)
+    Scaffold(
+        topBar = { TopBar() },
+        content = { paddingValues ->
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(paddingValues)
+            ) {
+                item?.let {
+                    HorizontalPager(state = pagerState) { page ->
+                        val imageResource = item.imageResources[page]
+                        ZoomableImageCard(imageResource)
+                    }
+                }
             }
         }
-    }
+    )
 }
 
 @Composable

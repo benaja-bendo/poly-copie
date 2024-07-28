@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun topBar(){
+fun TopBar(){
     TopAppBar(
         title = { Text(text = "poly-copie") },
         actions = {
