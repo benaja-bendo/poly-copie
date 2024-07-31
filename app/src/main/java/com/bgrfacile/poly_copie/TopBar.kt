@@ -14,10 +14,10 @@ import androidx.compose.runtime.Composable
 fun TopBar(){
     TopAppBar(
         title = { Text(text = "poly-copie") },
-        actions = {
-            IconButton(onClick = { /* Gérer le clic ici */ }) {
-                Icon(Icons.Filled.Search, contentDescription = "Rechercher")
-            }
-        }
+//        actions = {
+//            IconButton(onClick = { /* Gérer le clic ici */ }) {
+//                Icon(Icons.Filled.Search, contentDescription = "Rechercher")
+//            }
+//        }
     )
 }
