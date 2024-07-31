@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.util.Log
-import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture.OnImageCapturedCallback
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.ImageProxy
@@ -18,7 +17,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Cameraswitch
 import androidx.compose.material.icons.filled.Photo
 import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material3.BottomSheetScaffold
@@ -78,7 +76,7 @@ fun TakePhotoPage(
                 controller = controller,
                 modifier = Modifier.fillMaxSize()
             )
-            IconButton(
+            /*IconButton(
                 onClick = {
                     controller.cameraSelector =
                         if (controller.cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
@@ -91,13 +89,14 @@ fun TakePhotoPage(
                     imageVector = Icons.Default.Cameraswitch,
                     contentDescription = "Switch camera"
                 )
-            }
+            }*/
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
-                    .padding(16.dp),
+                    .padding(16.dp)
+                    .offset(y = (-32).dp),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
                 IconButton(
