@@ -2,7 +2,6 @@ package com.bgrfacile.poly_copie
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.camera.core.Camera
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,6 +17,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.Camera
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
@@ -38,11 +38,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.bgrfacile.poly_copie.screen.data.Polycopie
+import com.bgrfacile.poly_copie.screen.data.getFakePolycopie
 import java.text.SimpleDateFormat
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun TodoListPage(
+fun ListPolyCopePage(
     navController: NavController
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
@@ -83,8 +85,10 @@ fun TodoListPage(
         },
         floatingActionButton = {
             if (selectedTab == 1) {
-                FloatingActionButton(onClick = { }) {
-                    Icon(Icons.Default.AddCircle, contentDescription = "Camera")                }
+                FloatingActionButton(
+                    onClick = { navController.navigate("takePhoto") },
+                ) {
+                    Icon(Icons.Default.Camera, contentDescription = "Camera")                }
             }
         }
     )
@@ -141,31 +145,3 @@ fun PolyCopeItem(item: Polycopie, onClick: () -> Unit) {
         }
     }
 }
-
-
-@Composable
-fun CreatePolyCope(
-    navController: NavController,
-    paddingValues: PaddingValues
-) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Text(text = "Create")
-    }
-}
-
-@Composable
-fun ProfilePolyCope(
-    navController: NavController,
-    paddingValues: PaddingValues
-) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Text(text = "Profile")
-    }
-}
-

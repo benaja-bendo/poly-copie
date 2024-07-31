@@ -27,6 +27,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import com.bgrfacile.poly_copie.screen.data.getFakePolycopieById
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalFoundationApi::class)
